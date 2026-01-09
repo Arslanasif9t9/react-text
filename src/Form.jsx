@@ -23,6 +23,9 @@ function htmlForm({ handle }) {
     const titleText = () => {
         let newText = text.split(' ').filter(w => w).map(a => a[0].toUpperCase() + a.slice(1).toLowerCase()).join(" ")
         setText(newText);
+        let words = newText.trim().split(/\s+/).filter(a => (a.length != 0)).length;
+        setWord(words)
+        setChar(newText.length)
         handle("Successfull")
     }
     const extraText = () => {
