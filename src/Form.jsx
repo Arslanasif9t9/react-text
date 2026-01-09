@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-function htmlForm() {
+function htmlForm({ handle }) {
     const [text, setText] = useState('');
     const [word, setWord] = useState(0);
     const [char, setChar] = useState(0);
@@ -14,27 +14,29 @@ function htmlForm() {
     }
     const upperText = () => {
         setText(text.toUpperCase());
+        handle("Successfull")
     }
     const lowerText = () => {
         setText(text.toLowerCase());
+        handle("Successfull")
     }
     const titleText = () => {
-        // a[0].toUpperCase() + a.split(1)
-        let newText = text.split(' ').map(a => a[0].toUpperCase() + a.slice(1).toLowerCase()).join(" ")
-        // alert(newText);
-        // console.log(newText)
+        let newText = text.split(' ').filter(w => w).map(a => a[0].toUpperCase() + a.slice(1).toLowerCase()).join(" ")
         setText(newText);
+        handle("Successfull")
     }
     const extraText = () => {
         let newText = text.split(' ').filter(a => (a.length != 0)).join(" ")
-        // console.log(newText)
         setText(newText)
         let words = newText.trim().split(/\s+/).filter(a => (a.length != 0)).length;
         setWord(words)
         setChar(newText.length)
+        handle("Successfull")
     }
     const copyText = () => {
+        if (text == "") return
         navigator.clipboard.writeText(text)
+        handle("Successfull")
     }
 
   return (
